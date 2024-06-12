@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 public class HtmlPagesConverterTest {
 
     @Test
-    public void foo() throws IOException {
+    public void testGetFilename() throws IOException {
         HtmlPagesConverter converter = new HtmlPagesConverter("foo");
-        assertEquals("fixme", converter.getFilename());
+        assertEquals("foo", converter.getFilename());
     }
-
 }
