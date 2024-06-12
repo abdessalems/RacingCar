@@ -1,14 +1,9 @@
 package tddmicroexercises.leaderboard;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tddmicroexercises.leaderboard.TestData.driver1;
-import static tddmicroexercises.leaderboard.TestData.driver2;
-import static tddmicroexercises.leaderboard.TestData.driver3;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +14,7 @@ public class LeaderboardTest {
         // setup
 
         // act
-        Map<String, Integer> results = TestData.sampleLeaderboard1.driverResults();
+        Map<String, Integer> results = TestData.sampleLeaderboard1.calculateDriverResults();
 
         // verify
         assertTrue(results.containsKey("Lewis Hamilton"), "results " + results);
@@ -31,7 +26,7 @@ public class LeaderboardTest {
         // setup
 
         // act
-        List<String> result = TestData.sampleLeaderboard1.driverRankings();
+        List<String> result = TestData.sampleLeaderboard1.calculateDriverRankings();
 
         // verify
         assertEquals("Lewis Hamilton", result.get(0));
@@ -41,16 +36,12 @@ public class LeaderboardTest {
     public void itShouldKeepAllDriversWhenSamePoints() {
         // setup
         // bug, drops drivers with same points
-        Race winDriver1 = new Race("Australian Grand Prix", driver1, driver2, driver3);
-        Race winDriver2 = new Race("Malaysian Grand Prix", driver2, driver1, driver3);
-        Leaderboard exEquoLeaderBoard = new Leaderboard(winDriver1, winDriver2);
 
         // act
-        List<String> rankings = exEquoLeaderBoard.driverRankings();
+        List<String> rankings = TestData.sampleLeaderboard2.calculateDriverRankings();
 
         // verify
-        assertEquals(Arrays.asList(driver1.getName(), driver2.getName(), driver3.getName()), rankings);
+        assertEquals(Arrays.asList(TestData.driver1.getName(), TestData.driver2.getName(), TestData.driver3.getName()), rankings);
         // note: the order of driver1 and driver2 is JDK/platform dependent
     }
-
 }
