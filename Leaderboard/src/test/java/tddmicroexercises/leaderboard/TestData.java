@@ -1,5 +1,7 @@
 package tddmicroexercises.leaderboard;
 
+import java.util.Arrays;
+
 public class TestData {
 
     public static Driver driver1;
@@ -23,15 +25,14 @@ public class TestData {
         driver3 = new Driver("Sebastian Vettel", "DE");
         driver4 = new SelfDrivingCar("1.2", "Acme");
 
-        race1 = new Race("Australian Grand Prix", driver1, driver2, driver3);
-        race2 = new Race("Malaysian Grand Prix", driver3, driver2, driver1);
-        race3 = new Race("Chinese Grand Prix", driver2, driver1, driver3);
-        race4 = new Race("Fictional Grand Prix 1", driver1, driver2, driver4);
-        race5 = new Race("Fictional Grand Prix 2", driver4, driver2, driver1);
-        driver4.setAlgorithmVersion("1.3");
-        race6 = new Race("Fictional Grand Prix 3", driver2, driver1, driver4);
+        race1 = new RegularRace(Arrays.asList(driver1, driver2, driver3), new Integer[]{25, 18, 15});
+        race2 = new RegularRace(Arrays.asList(driver3, driver2, driver1), new Integer[]{25, 18, 15});
+        race3 = new RegularRace(Arrays.asList(driver2, driver1, driver3), new Integer[]{25, 18, 15});
+        race4 = new RegularRace(Arrays.asList(driver1, driver2, driver4), new Integer[]{25, 18, 15});
+        race5 = new RegularRace(Arrays.asList(driver4, driver2, driver1), new Integer[]{25, 18, 15});
+        race6 = new RegularRace(Arrays.asList(driver2, driver1, driver4), new Integer[]{25, 18, 15});
 
-        sampleLeaderboard1 = new Leaderboard(race1, race2, race3);
-        sampleLeaderboard2 = new Leaderboard(race4, race5, race6);
+        sampleLeaderboard1 = new Leaderboard(Arrays.asList(race1, race2, race3));
+        sampleLeaderboard2 = new Leaderboard(Arrays.asList(race4, race5, race6));
     }
 }
