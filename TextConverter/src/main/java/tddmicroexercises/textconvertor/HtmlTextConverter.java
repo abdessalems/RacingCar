@@ -1,35 +1,16 @@
 package tddmicroexercises.textconvertor;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.IOException;
 
-public class HtmlTextConverter
-{
-    private String fullFilenameWithPath;
+import org.junit.jupiter.api.Test;
 
-    public HtmlTextConverter(String fullFilenameWithPath)
-    {
-        this.fullFilenameWithPath = fullFilenameWithPath;
-    }
+public class HtmlTextConverterTest {
 
-    public String convertToHtml() throws IOException{
-    
-	    BufferedReader reader = new BufferedReader(new FileReader(fullFilenameWithPath));
-	    
-	    String line = reader.readLine();
-	    String html = "";
-	    while (line != null)
-	    {
-	    	html += StringEscapeUtils.escapeHtml(line);
-	        html += "<br />";
-	        line = reader.readLine();
-	    }
-	    return html;
-
-    }
-
-	public String getFilename() {
-		return this.fullFilenameWithPath;
+	@Test
+	public void testGetFilename() {
+		HtmlTextConverter converter = new HtmlTextConverter("foo");
+		assertEquals("foo", converter.getFilename());
 	}
 }
